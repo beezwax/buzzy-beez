@@ -1,91 +1,256 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* App styles */
+
 :root {
-  --color: white;
-  --background-color: black;
+  --small-logo: url("data:image/svg+xml,%3Csvg class='bee' width='15' height='15' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg class='nav-logo-seal'%3E%3Cpath d='M50.8 106.625C59.1 99.325 61.9 91.625 61.9 91.625C63.2 87.725 64.7 84.525 64.7 69.325C64.7 46.425 56.2 38.925 47 32.025C40.8 27.325 24.9 21.125 15.5 17.625L2.29998 25.125C1.49998 25.725 0.999976 26.225 0.599976 26.825C24.4 32.125 41.5 48.025 41.5 66.825C41.5 78.225 35.1 88.625 24.9 96.125L44.7 107.525C45.1 107.725 46 108.125 47.3 108.125C47.9 108.125 49 107.925 50.3 106.825L50.8 106.625Z' fill='%23FFD939'%3E%3C/path%3E%3Cpath d='M22.9 13.3248L44 20.4248C64.6 27.7248 73.2 37.8248 73.2 37.8248C84.5 49.1248 83.2 61.6248 83.2 76.8248C83.2 80.6248 82.6 84.9248 81.7 89.0248L93 82.6248C95.6 81.1248 95.6 77.9248 95.6 77.9248V29.3248C95.6 26.1248 93 24.6248 93 24.6248L72.5 13.2248L50.6 0.624845C48.1 -0.675155 45.5 0.424845 45.3 0.624845L23.1 13.3248H22.9Z' fill='%23FFD939'%3E%3C/path%3E%3Cpath d='M0.1 31.5244V78.2244C0.1 80.8244 2.2 82.3244 2.7 82.7244L14.8 89.6244L17.8 91.3244C24.4 84.7244 28.4 76.3244 28.5 67.1244C28.5 51.5244 16.8 38.0244 0 31.5244H0.1Z' fill='%23FFD939'%3E%3C/path%3E%3C/g%3E%3C/svg%3E")
 }
 
 body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-main {
-  background-color: var(--background-color);
+  background-color: black;
   height: 100vh;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  font-family: Avenir,"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  color: #FFD939;
 }
 
 h1 {
-  font-family: Georgia, serif;
-  font-size: 3rem;
-  font-style: italic;
-  font-weight: 200;
-  text-shadow: -1px -1px 0px #BBB;
-  letter-spacing: -0.27rem;
-  text-align: center;
-  color: var(--color);
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-top: 50px;
+  font-weight: 900;
+  color: #FFD939;
+  margin-inline-end: 10px;
 }
 
 h2 {
-  font-size: 1rem;
   text-align: center;
-  font-weight: normal;
-  margin-top: 0;
-  color: var(--color);
+  margin: 10px;
 }
 
-p {
-  font-size: 1.25rem;
-  text-align: center;
-  color: var(--color);
+.ready {
+  animation-name: ready;
+  animation-duration: .05s;
+  animation-iteration-count: infinite;
 }
 
-a {
-  color: white;
+@keyframes ready {
+  50% {
+    color: goldenrod;
+  }
 }
 
-a:visited {
-  color: #ccc;
+.go {
+  animation: go .25s forwards;
 }
 
-.logo {
-  font-family: "Georgia, serif";
-  text-align: center;
-  color: var(--color);
-  font-size: 1.5rem;
-  animation: LogoSpin infinite 5s linear;
+@keyframes go {
+
+  75% {
+    font-size: 10rem;
+  }
+  100% {
+    font-size: 1.5rem;
+    display: none;
+  }
 }
 
-.instruction {
-  font-size: 1rem;
-  margin-inline: 0.5rem;
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  margin-inline: 10px;
 }
 
-.project-path {
-  font-family: monospace;
-  overflow-wrap: break-word;
+.title {
+  display: flex;
+  align-items: baseline;
 }
 
-.launch-editor {
-  border: solid 1px var(--color);
-  border-radius: 8px;
-  background-color: var(--background-color);
-  color: var(--color);
-  font-size: 1.5rem;
-  width: calc(100% - 1rem);
-  padding-block: 0.5rem;
-  margin-block-start: 1rem;
-  margin-inline: 0.5rem;
+main {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  overflow: hidden;
+  flex: 1 1 auto;
+  margin: 10px;
+  border: 3px solid #FFD939;
+  border-radius: 10px;
+}
+
+.post-game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.post-game-button {
+  min-width: 12rem;
+  min-height: 3rem;
+  margin: 10px;
+  background-color: black;
+  color: #FFD939;
+  border: #FFD939 1px solid;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-@keyframes LogoSpin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.work-button {
+  color: #D2D2D2;
+  border-color: #D2D2D2;
+}
+
+.message {
+  position: absolute;
+  width: 100%;
+}
+
+.hive {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  margin-inline: 10px;
+}
+
+.flying-bee {
+  position: absolute;
+}
+
+.beeBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-width: 3rem;
+  min-height: 2.5rem;
+  border: 3px solid #FFD939;
+  border-top: none;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.score-counter {
+  display: flex;
+  align-items: center;
+}
+
+.score-icon {
+  content: var(--small-logo);
+}
+
+.score {
+  font-weight: normal;
+  margin-inline-start: 10px;
+}
+
+dialog {
+  position: absolute;
+  border-radius: 10px;
+  padding: 32px 32px 16px 32px;
+}
+
+dialog img {
+  border-radius: 5px;
+}
+
+.close-dialog-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0);
+  font-size: .75rem;
+  padding: 0px;
+  margin: 8px;
 }
