@@ -157,12 +157,11 @@ async function getReady() {
 
   const { response: { data: beez } } = await bzBond.PerformScript(config.script.getBeez, BEE_COUNT);
 
-  // await wait(2000);
-
   getReadyMessage.textContent = "Get Ready!";
   getReadyMessage.classList.add("ready");
   
   await wait(1000);
+  
   getReadyMessage.classList.remove("ready");
 
   getReadyMessage.addEventListener("animationend", (e) => e.target.remove());
