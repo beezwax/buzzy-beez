@@ -71,9 +71,6 @@ function buildStyles() {
     let keyFramesX = "";
     let keyFramesY = "";
     for(let i = 1; i < 11; i++) {
-      // cssVars += `
-      // --${className}-x-${i * 10}: ${i === 10 ? maxHorizontal + BEE_SIZE + 10: Math.round((Math.random()) * (maxHorizontal - BEE_SIZE))}px;
-      // --${className}-y-${i * 10}: ${Math.round((Math.random() - 0.5) * (maxVertical - BEE_SIZE))}px;`;
       cssVars += `
       --${className}-x-${i * 10}: ${i === 10 ? maxHorizontal + BEE_SIZE + 10: Math.round((Math.random() - 0.5) * (maxHorizontal - BEE_SIZE))}px;
       --${className}-y-${i * 10}: ${Math.round((Math.random() - 0.5) * (maxVertical - BEE_SIZE))}px;`;
@@ -302,12 +299,6 @@ async function play() {
   releaseBeez(beez);
 
   setTimeout(endGame, (DURATION + 1) * 1000);
-
-  // const serverScript = () => {
-  //   bzBond.PerformScript(config.script.startServerProcess);
-  // };
-
-  // setTimeout(serverScript, 1000);
 
 }
 
