@@ -101,6 +101,10 @@ h2 {
   margin: 10px;
 }
 
+button {
+  cursor: pointer;
+}
+
 .ready {
   animation-name: ready;
   animation-duration: .05s;
@@ -253,4 +257,8 @@ dialog img {
   font-size: .75rem;
   padding: 0px;
   margin: 8px;
+}
+
+.bee-title {
+  font-weight: bold;
 }

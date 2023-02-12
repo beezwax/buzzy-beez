@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+</head>
+
+<body>
+
+  <template id="hive">
+    <div class="hive"></div>
+  </template>
+
+  <template id="bee">
+    <div class="flying-bee"></div>
+  </template>
+
+  <template id="message">
+    <h2 class="message"></h2>
+  </template>
+  
+  <template id="post-game">
+    <div class="post-game">
+      <h2></h2>
+    </div>
+  </template>
+
+  <template id="play-again">
+    <button class="post-game-button">Play Again!</button>
+  </template>
+
+  <template id="back-to-work">
+    <button class="post-game-button work-button">Back to work, I guess</button>
+  </template>
+
+  <template id="bee-dialog">
+    <dialog>
+      <button class="close-dialog-button">✕</button>
+      <img />
+      <p></p>
+      <p class="bee-title"></p>
+    </dialog>
+  </template>
+
+  <header>
+    <div class="title">
+      <h1>Buzzy Beez</h1>
+      <p>Click 'em to catch 'em</p>
+    </div>
+    <div class="score-counter">
+      <div class="score-icon"></div>
+      <p class="score">0</p>
+    </div>
+  </header>
+  <main>
+  </main>
+  <footer>
+    <p id="last-caught">Nothing caught yet</p>
+    <div class="beeBox"></div>
+  </footer>
+</body>
+
+</html>

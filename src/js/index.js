@@ -12,47 +12,11 @@ let config;
 
 play();
 
-function structurePage() {
-  document.body.textContent = "";
-
-  const header = document.createElement("header");
-  const main = document.createElement("main");
-  const footer = document.createElement("footer");
-
-  const title = document.createElement("div");
-  title.classList.add("title");
-  const h1 = document.createElement("h1");
-  h1.textContent = "Buzzy Beez";
-  const instructions = document.createElement("p");
-  instructions.textContent = "Click 'em to catch 'em";
-  title.appendChild(h1);
-  title.appendChild(instructions);
-  const scoreCounter = document.createElement("div");
-  scoreCounter.classList.add("score-counter");
-  const scoreIcon = document.createElement("div");
-  scoreIcon.classList.add("score-icon");
-  scoreCounter.appendChild(scoreIcon);
-  const score = document.createElement("p");
-  score.classList.add("score");
-  score.textContent = 0;
-  scoreCounter.appendChild(score);
-
-  header.appendChild(title);
-  header.appendChild(scoreCounter);
-
-  const lastCaught = document.createElement("p");
-  lastCaught.setAttribute("id", "last-caught");
-  lastCaught.textContent = "Nothing caught yet";
-  footer.appendChild(lastCaught);
-
-  const beeBox = document.createElement("div");
-  beeBox.classList.add("beeBox");
-  footer.appendChild(beeBox);
-
-  document.body.appendChild(header);
-  document.body.appendChild(main);
-  document.body.appendChild(footer);
-
+function reset() {
+  document.querySelector("main").textContent = "";
+  document.querySelector(".score").textContent = "0";
+  document.getElementById("last-caught").textContent = "Nothing caught yet";
+  document.querySelector(".beeBox").textContent = "";
 }
 
 function buildStyles() {
@@ -145,8 +109,8 @@ function buildStyles() {
 
 async function getReady() {
 
-  const getReadyMessage = document.createElement("h2");
-  getReadyMessage.classList.add("message");
+  const getReadyMessage = createFromTemplate("message");
+
   getReadyMessage.textContent = "Gathering Beez...";
   document.querySelector("main").appendChild(getReadyMessage);
 
@@ -170,8 +134,7 @@ async function getReady() {
 
 function releaseBeez(beez) {
   const main = document.querySelector("main");
-  const hive = document.createElement("div");
-  hive.classList.add("hive");
+  const hive = createFromTemplate("hive");
   for (let beeNum = 1; beeNum < BEE_COUNT + 1; beeNum++) {
     const bee = document.createElement("div");
     bee.classList.add("flying-bee");
@@ -192,12 +155,10 @@ async function endGame () {
   const beezCaught = +document.querySelector(".score").textContent;
   const descriptor = beezCaught !== 1 ? "beez" : "bee"; 
   const percentage = Math.round((beezCaught / BEE_COUNT) * 100);
-  const postGame = document.createElement("div");
-  postGame.classList.add("post-game");
-  const h2 = document.createElement("h2");
+  const postGame = createFromTemplate("post-game");
+  const h2 = postGame.querySelector("h2");
   h2.textContent = "Game Over";
   const hive = document.querySelector(".hive");
-  postGame.appendChild(h2);
   hive.appendChild(postGame);
 
   await wait(2000);
@@ -210,21 +171,17 @@ async function endGame () {
 
   await wait(2000);
 
-  const timeToWork = document.createElement("button");
-  const playAgain = document.createElement("button");
-  timeToWork.classList.add("post-game-button");
-  timeToWork.classList.add("work-button");
-  playAgain.classList.add("post-game-button");
+
+  const backToWork = createFromTemplate("back-to-work");
+  const playAgain = createFromTemplate("play-again");
   h2.remove();
-  timeToWork.textContent = "Back to work, I guess";
-  timeToWork.addEventListener("click", (e) => {
+  backToWork.addEventListener("click", (e) => {
     bzBond.PerformScript(config.script.goToWork);
   });
-  playAgain.textContent = "Play again!";
   playAgain.addEventListener("click", (e) => play());
 
   postGame.appendChild(playAgain);
-  postGame.appendChild(timeToWork);
+  postGame.appendChild(backToWork);
 
   if(beezCaught) {
     const lastCaught = document.getElementById("last-caught");
@@ -268,7 +225,7 @@ async function showBeeDialog(e) {
     );
   });
   name.textContent = e.target.dataset.name;
-  title.innerHTML = `<strong>${e.target.dataset.title}</strong>`;
+  title.innerHTML = e.target.dataset.title;
   name.style.maxWidth = `${imageWidth}px`;
   title.style.maxWidth = `${imageWidth}px`;
   dialog.appendChild(closeButton);
@@ -289,8 +246,8 @@ async function showBeeDialog(e) {
 }
 
 async function play() {
-  
-  structurePage();
+
+  reset();
 
   buildStyles();
 
@@ -313,4 +270,9 @@ function loadImage(img, src) {
     };
     img.src = src;
   })
+}
+
+function createFromTemplate(templateId) {
+  const template = document.getElementById(templateId);
+  return template.content.firstElementChild.cloneNode(true);
 }
